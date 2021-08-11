@@ -1,0 +1,37 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Add A New Cafe{% endblock %}
+{% block styles %}
+    {{super()}}
+    <link rel="stylesheet" href="{{url_for('.static', filename='css/styles.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8">
+
+      <h1>Add a new cafe into the database</h1>
+
+      <!-- This is where your WTForm will go☕️/💪/✘/🔌 -->
+<!--        {{ wtf.quick_form(form, novalidate=True) }}-->
+        <form action="" method="post" class="form" role="form">
+          {{ form.csrf_token() }}
+
+          {{ wtf.form_field(form.cafe, placeholder="Cafe Name") }}
+          {{ wtf.form_field(form.location, placeholder="Cafe Location on Google Maps (URL) ") }}
+          {{ wtf.form_field(form.open, placeholder="Opening Time e.g.8AM") }}
+          {{ wtf.form_field(form.close, placeholder="Closing Time e.g.10:30PM") }}
+          {{ wtf.form_field(form.coffee, placeholder="Coffee Rating ☕") }}
+          {{ wtf.form_field(form.wifi, placeholder="WiFi Strength Rating 💪") }}
+          {{ wtf.form_field(form.power, placeholder="Power Socket Rating 🔌") }}
+         <p><input type=submit class='btn btn-warning btn-block'>
+        </form>
+	  <p class="space-above"><a href="{{url_for('cafes')}}">See all cafes</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
